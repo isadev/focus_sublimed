@@ -8,7 +8,7 @@ import { Request } from 'express';
 export class AdminController {
     constructor(private readonly adminService: AdminService) {}
 
-    @Post('login')
+    @Post('')
     create(@Body() createAdminDto: CreateAdminDto): string {
         return this.adminService.create(createAdminDto);
     }

@@ -35,7 +35,7 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
+# development, run in port 3000 by default
 $ npm run start
 
 # watch mode
@@ -77,7 +77,7 @@ npx nest g resource <model_name>
 Controllers
 
 ```bash
-npx nest g resource <controller_route_name>
+npx nest g controller <controller_route_name>
 ```
 
 Services
@@ -88,4 +88,4 @@ npx nest g service <service_name>
 
 ## New modules
 
-To include a new feature you must create the controller and the CLI will automatically add the module for you in app.module
+To include a new feature you must create the resource and the CLI will automatically add the module for you in app.module and the rest of the files needed (like dto, controller and so on)
