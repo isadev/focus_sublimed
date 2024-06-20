@@ -6,6 +6,17 @@ import { Privilege, User } from 'src/mongo/models/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
+enum ISortBy {
+    ASC,
+    DESC,
+}
+
+interface IFindBy {
+    sort: ISortBy;
+    creation_date: Date;
+    enabled: boolean;
+}
+
 @Injectable()
 export class LoginService {
     constructor(
@@ -26,6 +37,16 @@ export class LoginService {
 
     findAll() {
         return `This action returns all login`;
+    }
+
+    async findBy({ username, password, sort }: LoginDto) {
+        const userFound = await this.userModel
+            .findOne({ username, password }, { username: 1, privilege: 1 }, { sort })
+            .exec();
+        if (userFound?.privilege === Privilege.admin) {
+            return userFound;
+        }
+        return userFound;
     }
 
     findOne(id: number) {

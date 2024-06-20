@@ -2,11 +2,13 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
+
 export enum Privilege {
     admin,
     user,
     visitor,
 }
+
 @Schema()
 export class User {
     // could be also a email
@@ -18,6 +20,9 @@ export class User {
 
     @Prop()
     name: string;
+
+    @Prop()
+    login_from: string;
 
     @Prop()
     privilege: Privilege;

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { LoginDto } from './dto/login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
@@ -12,9 +12,12 @@ export class LoginController {
         return this.loginService.LoginDto(LoginDtoLoginDto);
     }
 
+    // TODO: cambia a form
     @Get()
-    findAll() {
-        return this.loginService.findAll();
+    async findAll(@Query() queryParams: LoginDto) {
+        console.log(queryParams.username);
+        const user = await this.loginService.findBy(queryParams);
+        return user;
     }
 
     @Get(':id')

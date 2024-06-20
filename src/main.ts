@@ -5,6 +5,7 @@ import { AllExceptionsFilter } from './middleware/all-exceptions-filter';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+    const port = 3000;
     const { httpAdapter } = app.get(HttpAdapterHost);
     app.enableCors({
         origin: 'http://localhost:3001',
@@ -12,6 +13,8 @@ async function bootstrap() {
     });
     app.use(helmet());
     app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-    await app.listen(3000);
+    await app.listen(port, () => {
+        console.log(`Server listening on port ${port}`);
+    });
 }
 bootstrap();
