@@ -10,6 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { LoginController } from './login/login.controller';
 
 @Module({
     controllers: [AppController],
@@ -31,6 +32,9 @@ import { UsersModule } from './users/users.module';
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
-        //consumer.apply(HeaderMiddleware).exclude('healthcheck').forRoutes(AdminController, RopeController);
+        consumer
+            .apply(HeaderMiddleware)
+            .exclude('healthcheck')
+            .forRoutes(AdminController, RopeController, LoginController);
     }
 }

@@ -68,7 +68,7 @@ Please contact us [dev team](isabelcnd@gmail.com).
 
 ## Using CLI to generate
 
-Models
+Entities (a.k.a a new model, controller, service and .spec file)
 
 ```bash
 npx nest g resource <model_name>
