@@ -3,6 +3,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
+/**
+ * here the file that made the magic is local.stategy
+ * https://docs.nestjs.com/recipes/passport#named-strategies
+ */
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
     constructor(private authService: AuthService) {

@@ -2,8 +2,9 @@ import { Controller, Request, Get, Post, Body, Patch, Param, Delete, Query, UseG
 import { LoginService } from './login.service';
 import { LoginDto } from './dto/login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
-import { LocalAuthGuard } from 'src/auth/local-auth.guard';
-import { AuthService } from 'src/auth/auth.service';
+import { LocalAuthGuard } from '../auth/local-auth.guard';
+import { AuthService } from '../auth/auth.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('login')
 export class LoginController {
@@ -26,14 +27,15 @@ export class LoginController {
     // TODO: cambia a form
     @Get()
     async findAll(@Query() queryParams: LoginDto) {
-        console.log(queryParams.username);
+        console.log('get simple', queryParams.username);
         const user = await this.loginService.findBy(queryParams);
         return user;
     }
 
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.loginService.findOne(+id);
+    findOne(@Param('id') id: string, @Request() req: any) {
+        return req.user;
     }
 
     @Patch(':id')
