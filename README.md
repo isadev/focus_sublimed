@@ -61,6 +61,7 @@ $ npm run test:cov
 ## Support
 
 Please contact us [dev team](isabelcnd@gmail.com).
+This project runs using npm and node 21
 
 ## Stay in touch
 
