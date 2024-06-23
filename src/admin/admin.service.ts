@@ -17,6 +17,13 @@ export class AdminService {
         return `This action returns all admin`;
     }
 
+    findByUsername(username: string) {
+        if (username.includes('admin')) {
+            return true;
+        }
+        return false;
+    }
+
     findOne(id: number) {
         return `This action returns a #${id} admin`;
     }

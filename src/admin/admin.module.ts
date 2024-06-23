@@ -7,7 +7,7 @@ import { RopeModule } from 'src/rope/rope.module';
     controllers: [AdminController],
     providers: [AdminService],
     exports: [AdminService],
-    imports: [RopeModule], // the import is importe instead of the service
+    imports: [RopeModule], // the import is the module instead of the service
 })
 export class AdminModule {
     constructor() {}
